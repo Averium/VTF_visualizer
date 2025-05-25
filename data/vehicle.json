@@ -1,0 +1,9 @@
+{
+  "FRONT_LENGTH": 1.7,
+  "REAR_LENGTH": 1.0,
+  "FRONT_TRACK": 1.8,
+  "REAR_TRACK": 1.8,
+  "CHASSIS_HEIGHT": 0.3,
+
+  "WHEEL_RADIUS": 0.3
+}
