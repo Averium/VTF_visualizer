@@ -1,6 +1,16 @@
 {
+  "FPS": 60,
+  "TITLE": "Simple 3D Visualizer",
+
   "WINDOW_WIDTH": 1600,
   "WINDOW_HEIGHT": 900,
-  "FPS": 60,
-  "TITLE": "Simple 3D Visualizer"
+  "GRID_SIZE": 50,
+  "GRID_SPACING": 10,
+
+  "SEARCH_PATH": [
+    "C:\\Work\\projects\\development\\VTF\\data\\simulation_results\\test"
+  ],
+
+  "DOWN_SAMPLING": 1.0,
+  "SIMULATION_SPEED": 1.0
 }

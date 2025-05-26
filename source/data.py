@@ -1,9 +1,11 @@
 from os.path import join
+from os import getcwd
 from source.file import JsonFile
 
 
 class PATH:
-    DATA = "data"
+    ROOT = getcwd()
+    DATA = join(ROOT, "data")
 
 
 COLORS = JsonFile(PATH.DATA, "colors")

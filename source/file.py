@@ -1,5 +1,8 @@
+from fileinput import filename
 from os.path import join
 import json
+
+from scipy.io import loadmat
 
 
 class Dataclass:
@@ -28,22 +31,38 @@ class Dataclass:
 
 class File(Dataclass):
 
+    EXTENSION = ""
+
     def __init__(self, root: str, filename: str):
         self.root = root
         self.filename = filename
-
-        self.path = join(root, filename)
         self.file = None
+
         super().__init__(self.load())
 
     def load(self) -> dict:
         return dict()
 
+    @property
+    def path(self):
+        if self.filename.endswith(self.EXTENSION):
+            return join(self.root, self.filename)
+        else:
+            return f"{join(self.root, self.filename)}{self.EXTENSION}"
+
 
 class JsonFile(File):
 
-    EXTENSION = "json"
+    EXTENSION = ".json"
 
     def load(self):
-        with open(f"{self.path}.{JsonFile.EXTENSION}", "r") as self.file:
+        with open(self.path, "r") as self.file:
             return json.load(self.file)
+
+
+class MatFile(File):
+
+    EXTENSION = ".mat"
+
+    def load(self):
+        return loadmat(self.path)

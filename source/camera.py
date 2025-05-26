@@ -9,8 +9,8 @@ class Camera:
         self._camera = pyray.Camera3D()
 
         self._camera.position=Vector(4.0, 4.0, 4.0)
-        self._camera.target=Vector(0.0, 1.0, 0.0)
-        self._camera.up=Vector(0.0, 1.0, 0.0)
+        self._camera.target=Vector(1.0, 0.0, 0.0)
+        self._camera.up=Vector(0.0, 0.0, 1.0)
         self._camera.fovy=45.0
         self._camera.projection=CAMERA_PERSPECTIVE
 
@@ -19,14 +19,14 @@ class Camera:
         return self._camera
 
     def update(self, vehicle):
-        rotation = pyray.quaternion_to_matrix(vehicle.orientation)
+        rotation = pyray.matrix_transpose(pyray.quaternion_to_matrix(vehicle.orientation))
 
-        distance = 6
-        height = 2
+        distance = 8
+        height = 3
 
         # Get back and up vectors from rotation matrix
-        forward = pyray.Vector3(rotation.m2, rotation.m6, rotation.m10)  # Z axis
-        up = pyray.Vector3(rotation.m1, rotation.m5, rotation.m9)  # Y axis
+        forward = Vector(rotation.m0, rotation.m4, rotation.m8)  # Z axis
+        up = Vector(0.0, 0.0, 1.0)  # Y axis
 
         # Normalize just in case
         forward = pyray.vector3_normalize(forward)
